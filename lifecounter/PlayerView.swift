@@ -10,6 +10,7 @@ import SwiftUI
 struct PlayerView: View {
     let name: String
     @Binding var life: Int
+    @State private var changeAmt = ""
 
     var body: some View {
         VStack(spacing: 20) {
@@ -21,21 +22,22 @@ struct PlayerView: View {
 
             VStack(spacing: 10) {
                 HStack(spacing: 10) {
-                    Button("+") {
-                        life += 1
-                    }
                     Button("-") {
-                        life -= 1
+                        let amount = Int(changeAmt) ?? 0
+                        life -= amount
+                    }
+                    Button("+") {
+                        let amount = Int(changeAmt) ?? 0
+                        life += amount
                     }
                 }
 
                 HStack(spacing: 10) {
-                    Button("+5") {
-                        life += 5
-                    }
-                    Button("-5") {
-                        life -= 5
-                    }
+                    TextField(
+                        "Change amount",
+                        text: $changeAmt
+                    )
+                    .multilineTextAlignment(.center)
                 }
             }
             .buttonStyle(.borderedProminent)
