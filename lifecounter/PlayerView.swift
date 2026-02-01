@@ -11,6 +11,7 @@ struct PlayerView: View {
     let name: String
     @Binding var life: Int
     @State private var changeAmt = ""
+    @Binding var history: [String]
 
     var body: some View {
         VStack(spacing: 20) {
@@ -25,10 +26,12 @@ struct PlayerView: View {
                     Button("-") {
                         let amount = Int(changeAmt) ?? 0
                         life -= amount
+                        history.append("\(name) lost \(amount) life")
                     }
                     Button("+") {
                         let amount = Int(changeAmt) ?? 0
                         life += amount
+                        history.append( "\(name) gained \(amount) life")
                     }
                 }
 
