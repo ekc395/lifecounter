@@ -26,7 +26,7 @@ struct ContentView: View {
     }
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             ScrollView {
                 VStack {
                     Button("Add Player") {
